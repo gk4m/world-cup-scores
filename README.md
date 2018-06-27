@@ -1,5 +1,5 @@
 # World Cup scores
-Simple vue.js based app for displaying results from World Cup 2018.
+Simple vue.js based app for displaying results from World Cup 2018 https://gk4m.github.io/world-cup-scores. 
 
 * Today games
 * Tomorrow games
