@@ -1,6 +1,10 @@
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 module.exports = {
+  baseUrl: process.env.NODE_ENV === 'production'
+    ? '/world-cup-scores/'
+    : '/',
+
   devServer: {
     port: 8080
   },
