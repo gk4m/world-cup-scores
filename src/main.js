@@ -25,6 +25,10 @@ new Vue({
 
 (function() {
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js');
+    if(process.env.NODE_ENV === 'production'){
+      navigator.serviceWorker.register('https://gk4m.github.io/world-cup-scores/service-worker.js');
+    } else {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
   }
 })();
