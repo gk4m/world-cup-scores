@@ -109,7 +109,8 @@
 
     &--in-progress
       .match-item__progress
-        display: block
+        display: flex
+        align-items: center
 
 
     &__time
@@ -146,8 +147,7 @@
       background: $c-white
 
       &:before
-        display: flex
-        align-items: center
+        display: inline-block
         width: 7px
         height: 7px
         margin-right: 4px
