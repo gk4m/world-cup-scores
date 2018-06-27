@@ -146,7 +146,8 @@
       background: $c-white
 
       &:before
-        display: inline-block
+        display: flex
+        align-items: center
         width: 7px
         height: 7px
         margin-right: 4px
