@@ -2,25 +2,25 @@
   <div class="home-view">
     <div class="home-view__row">
       <section class="home-view__section">
-        <info-bar
-          v-if="todayMatches"
-          title="Today matches"
-          :date="todayMatches[0].datetime"/>
+          <info-bar
+            title="Today matches"
+            :date="new Date()"/>
 
-        <div v-for="(match, index) in todayMatches" :key="index">
-          <match :match="match"/>
-        </div>
+          <div v-for="(match, index) in todayMatches" :key="index">
+            <match :match="match"/>
+          </div>
+        <p  v-if="!todayMatches[0]">No matches found</p>
       </section>
 
       <section class="home-view__section">
         <info-bar
-          v-if="tomorrowMatches"
           title="Tomorrow matches"
-          :date="tomorrowMatches[0].datetime"/>
+          :date="new Date() | moment('add', '1 days')"/>
 
         <div v-for="(match, index) in tomorrowMatches" :key="index">
           <match :match="match"/>
         </div>
+        <p v-if="!tomorrowMatches[0]">No matches found</p>
       </section>
     </div>
 
