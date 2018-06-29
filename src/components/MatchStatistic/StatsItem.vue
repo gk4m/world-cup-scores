@@ -31,30 +31,16 @@
       }
     },
 
-    data() {
-      return {}
-    },
-
     computed: {
       show() {
         return !!this.awayVal || !!this.homeVal
       },
 
-      elClass() {
-        return [
-          {}
-        ]
-      },
       progress() {
         return {
           'width': (this.awayVal * 100) / (this.awayVal + this.homeVal) + '%'
         }
       }
-    },
-
-    methods: {},
-
-    mounted() {
     }
   }
 </script>
@@ -88,15 +74,15 @@
         height: 100%
         background: $c-blue-light
 
-    +breakpoint(medium)
-      .stats-item
-        &__label
-          font-size: 16px
+  +breakpoint(medium)
+    .stats-item
+      &__label
+        font-size: 16px
 
-        &__table
-          font-size: 16px
+      &__table
+        font-size: 16px
 
-        &__progress-bar
-          height: 20px
+      &__progress-bar
+        height: 20px
 
 </style>

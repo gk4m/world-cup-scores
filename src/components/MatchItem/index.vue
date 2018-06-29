@@ -45,7 +45,7 @@
 
 <script>
   export default {
-    name: 'MainNav',
+    name: 'MatchItem',
 
     props: {
       match: {
@@ -111,7 +111,6 @@
       .match-item__progress
         display: flex
         align-items: center
-
 
     &__time
       position: absolute

@@ -50,8 +50,6 @@
       }
     },
 
-    computed: {},
-
     methods: {
       initEvents() {
         const homeEvents = this.homeTeam.map(el => Object.assign(JSON.parse(JSON.stringify(el)), {team: 'home'}));

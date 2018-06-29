@@ -27,7 +27,7 @@
 
     data() {
       return {
-        videos: [],
+        videos: null,
         playlistId: 'UUpcTrCXblq78GZrTUTLWeBw'
       }
     },
@@ -48,7 +48,9 @@
               nextPageToken: response.data.nextPageToken
             };
           } catch (e) {
-            console.log(e);
+            if (e.response.status === 403) {
+              console.warn('Access to youtube api from this domain is forbidden!')
+            }
           }
         }
       },

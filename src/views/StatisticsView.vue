@@ -69,7 +69,7 @@
   import LoadingSpinner from '@/components/LoadingSpinner'
 
   export default {
-    name: 'MatchesView',
+    name: 'StatisticsView',
 
     components: {
       DataTable,

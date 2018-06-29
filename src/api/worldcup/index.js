@@ -19,14 +19,14 @@ export default {
   },
 
   getAllMatches: function () {
-    return request.get(`matches`)
+    return request.get('matches')
   },
 
   getTodayMatches: function () {
-    return request.get(`matches/today`)
+    return request.get('matches/today')
   },
 
   getTomorrowMatches: function () {
-    return request.get(`matches/tomorrow`)
+    return request.get('matches/tomorrow')
   },
 };

@@ -13,14 +13,17 @@ export default {
       const name = $(el).find('.fi-p__name').text().trim();
       const image = $(el).find('.fi-p__picture image').attr('href');
       const countrycode = $(el).find('.fi-p__flag').attr('data-countrycode');
-      const goals = +$(el).find('.fi-table__td').eq(0).text();
-      const assists = +$(el).find('.fi-table__td').eq(1).text();
-      const minutesPlayed = +$(el).find('.fi-table__td').eq(2).text();
-      const matchesPlayed = +$(el).find('.fi-table__td').eq(3).text();
-      const penaltiesScored = +$(el).find('.fi-table__td').eq(4).text();
-      const goalsLeftFoot = +$(el).find('.fi-table__td').eq(5).text();
-      const goalsRightFoot = +$(el).find('.fi-table__td').eq(6).text();
-      const headGoals = +$(el).find('.fi-table__td').eq(7).text();
+
+      const $td = $(el).find('.fi-table__td');
+
+      const goals = +$td.eq(0).text();
+      const assists = +$td.eq(1).text();
+      const minutesPlayed = +$td.eq(2).text();
+      const matchesPlayed = +$td.eq(3).text();
+      const penaltiesScored = +$td.eq(4).text();
+      const goalsLeftFoot = +$td.eq(5).text();
+      const goalsRightFoot = +$td.eq(6).text();
+      const headGoals = +$td.eq(7).text();
 
       if(name) {
         data.push({
@@ -54,10 +57,13 @@ export default {
       const name = $(el).find('.fi-p__name').text().trim();
       const image = $(el).find('.fi-p__picture image').attr('href');
       const countrycode = $(el).find('.fi-p__flag').attr('data-countrycode');
-      const matchesPlayed = +$(el).find('.fi-table__td').eq(0).text();
-      const minutesPlayed = +$(el).find('.fi-table__td').eq(1).text();
-      const saves = +$(el).find('.fi-table__td').eq(2).text();
-      const saveRate = +$(el).find('.fi-table__td').eq(3).text().replace('%','');
+
+      const $td = $(el).find('.fi-table__td');
+
+      const matchesPlayed = +$td.eq(0).text();
+      const minutesPlayed = +$td.eq(1).text();
+      const saves = +$td.eq(2).text();
+      const saveRate = +$td.text().replace('%','');
 
       if(name) {
         data.push({

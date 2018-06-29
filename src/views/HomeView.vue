@@ -38,19 +38,13 @@
   import LoadingSpinner from '@/components/LoadingSpinner'
 
   export default {
-    name: 'Home',
+    name: 'HomeView',
 
     components: {
       VideosWidget,
       Match,
       InfoBar,
       LoadingSpinner
-    },
-
-    data() {
-      return {
-        videos: ''
-      }
     },
 
     computed: {

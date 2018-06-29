@@ -50,6 +50,7 @@
         init: 'app/init',
       })
     },
+
     mounted() {
       this.init();
     }
