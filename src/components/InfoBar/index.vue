@@ -11,10 +11,11 @@
 
     props: {
       title: {
+        type: String,
         required: false
       },
       date: {
-        required: true
+        required: false
       }
     },
   }
@@ -29,6 +30,7 @@
     font-size: 14px
     color: $c-white
     background: $c-blue-dark
+    border-radius: 3px
 
     &__date
       +vertical-center

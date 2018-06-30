@@ -1,27 +1,33 @@
 <template>
   <div class="home-view">
     <div class="home-view__row">
-      <section class="home-view__section">
+      <div class="home-view__left">
+        <section class="home-view__section">
           <info-bar
             title="Today matches"
             :date="new Date()"/>
 
-          <div v-for="(match, index) in todayMatches" :key="index">
+          <div v-if="todayMatches" v-for="(match, index) in todayMatches" :key="index">
             <match :match="match"/>
           </div>
-        <p  v-if="!todayMatches[0]">No matches found</p>
-      </section>
+          <p  v-if="!todayMatches">No matches found</p>
+        </section>
 
-      <section class="home-view__section">
-        <info-bar
-          title="Tomorrow matches"
-          :date="new Date() | moment('add', '1 days')"/>
+        <section class="home-view__section">
+          <info-bar
+            title="Tomorrow matches"
+            :date="new Date() | moment('add', '1 days')"/>
 
-        <div v-for="(match, index) in tomorrowMatches" :key="index">
-          <match :match="match"/>
-        </div>
-        <p v-if="!tomorrowMatches[0]">No matches found</p>
-      </section>
+          <div v-if="tomorrowMatches" v-for="(match, index) in tomorrowMatches" :key="index">
+            <match :match="match"/>
+          </div>
+          <p v-if="!tomorrowMatches">No matches found</p>
+        </section>
+      </div>
+
+      <div class="home-view__right">
+        <news-widget class="home-view__section"/>
+      </div>
     </div>
 
     <videos-widget v-if="todayMatches && tomorrowMatches"/>
@@ -35,6 +41,7 @@
   import Match from '@/components/Match'
   import InfoBar from '@/components/InfoBar'
   import VideosWidget from '@/components/VideosWidget'
+  import NewsWidget from '@/components/NewsWidget'
   import LoadingSpinner from '@/components/LoadingSpinner'
 
   export default {
@@ -42,6 +49,7 @@
 
     components: {
       VideosWidget,
+      NewsWidget,
       Match,
       InfoBar,
       LoadingSpinner
@@ -62,7 +70,7 @@
           'fetchTodayMatches',
           'fetchTomorrowMatches'
         ]
-      ),
+      )
     },
 
     created() {
@@ -78,7 +86,29 @@
 
 <style scoped lang="sass">
   .home-view
+    &__row
+      display: flex
+      flex-wrap: wrap
+
+    &__left
+      width: 100%
+
+    &__right
+      width: 100%
+
     &__section
       margin: 5px 5px 20px
+
+  +breakpoint(medium)
+    .home-view
+      &__row
+        flex-wrap: nowrap
+
+      &__left
+        width: 60%
+        margin-right: 15px
+
+      &__right
+        width: 40%
 
 </style>

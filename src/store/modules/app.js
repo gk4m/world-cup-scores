@@ -29,6 +29,7 @@ const state = {
   tomorrowMatches: null,
   playersGoalScored: null,
   playersSaves: null,
+  news: null,
   resourcesUpdates: []
 };
 
@@ -40,6 +41,7 @@ const getters = {
   getPlayersGoalScored: state => state.playersGoalScored,
   getPlayersSaves: state => state.playersSaves,
   getResourcesUpdates: state => state.resourcesUpdates,
+  getNews: state => state.news,
   isOnline: state => state.online,
 };
 
@@ -68,6 +70,11 @@ const mutations = {
   SET_PLAYER_SAVES(state, data) {
     state.playersSaves = data;
   },
+
+  SET_NEWS(state, data) {
+    state.news = data;
+  },
+
 
   SET_RESOURCE_UPDATE(state, resource) {
     state.resourcesUpdates[resource] = new Date();
@@ -163,6 +170,19 @@ const actions = {
 
         commit('SET_PLAYER_SAVES', data);
         commit('SET_RESOURCE_UPDATE', resources.PLAYER_SAVES);
+
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
+
+  async fetchNews({commit}) {
+    if (navigator.onLine) {
+      try {
+        const data = await api.fifacom.getNews();
+
+        commit('SET_NEWS', data);
 
       } catch (e) {
         console.log(e);
