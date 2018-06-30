@@ -1,4 +1,5 @@
 import api from '@/api';
+import axios from 'axios';
 import _ from 'lodash';
 
 const checkLastUpdate = function (lastUpdate, expired = 20) {
@@ -180,9 +181,9 @@ const actions = {
   async fetchNews({commit}) {
     if (navigator.onLine) {
       try {
-        const data = await api.fifacom.getNews();
+        const response = await axios.get('https://fifa-2018-apis.herokuapp.com/fifa/news');
 
-        commit('SET_NEWS', data);
+        commit('SET_NEWS', response.data.data.slice(0, 5));
 
       } catch (e) {
         console.log(e);

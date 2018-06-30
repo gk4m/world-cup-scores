@@ -7,8 +7,8 @@
           <div class="news-widget__date__top">{{item.date | moment("DD")}}</div>
           <div class="news-widget__date__bottom">{{item.date | moment("MMM YY")}}</div>
         </div>
-       <a :href="item.url" target="_blank" rel="noopener">
-         {{item.title}}
+       <a :href="item.news_link" target="_blank" rel="noopener">
+         {{item.news_title}}
        </a>
       </li>
     </ul>
