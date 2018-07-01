@@ -5,7 +5,7 @@
   "background_color": "#0855a2",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "/",
+  "start_url": "/world-cup-scores",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
