@@ -111,8 +111,8 @@
 
     &--in-progress
       .match-item__progress
-      display: flex
-      align-items: center
+        display: flex
+        align-items: center
 
     &__inner
       display: flex
@@ -194,8 +194,8 @@
         margin: 3px 0 0
         font-size: 12px
 
-    @keyframes blink
-      50%
-        opacity: 0
+  @keyframes blink
+    50%
+      opacity: 0
 
 </style>
