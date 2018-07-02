@@ -1,9 +1,38 @@
 <template>
   <div class="matches-view">
-    <template v-if="matches" v-for="(match, index) in matches">
-      <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
-      <match :match="match"/>
-    </template>
+
+    <tabs :options="{ useUrlFragment: false }">
+      <tab name="Group phase">
+        <template v-for="(match, index) in matches" v-if="matches && match.stage_name === 'First stage'" >
+          <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
+          <match :match="match"/>
+        </template>
+      </tab>
+      <tab name="1/8 finals">
+        <template v-for="(match, index) in matches" v-if="matches && match.stage_name === 'Round of 16'" >
+          <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
+          <match :match="match"/>
+        </template>
+      </tab>
+      <tab name="Quarter finals">
+        <template v-for="(match, index) in matches" v-if="matches && match.stage_name === 'Quarter-finals'" >
+          <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
+          <match :match="match"/>
+        </template>
+      </tab>
+      <tab name="Semi finals">
+        <template v-for="(match, index) in matches" v-if="matches && match.stage_name === 'Semi-finals'" >
+          <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
+          <match :match="match"/>
+        </template>
+      </tab>
+      <tab name="Final">
+        <template v-for="(match, index) in matches" v-if="matches && match.stage_name === 'Final'" >
+          <info-bar v-if="checkDate(index)" :date="match.datetime"></info-bar>
+          <match :match="match"/>
+        </template>
+      </tab>
+    </tabs>
 
     <loading-spinner v-if="!matches" />
   </div>
@@ -60,9 +89,24 @@
   }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
   .matches-view
     .header-bar
       margin-top: 10px
+
+    .tabs-component-tabs
+      display: flex
+      margin-bottom: 10px
+
+    .tabs-component-tab
+      display: flex
+
+      &.is-active
+        border-bottom: 2px solid $c-blue
+
+      a
+        padding: 6px 8px
+        font-size: 12px
+        color: $c-blue
 
 </style>

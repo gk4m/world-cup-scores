@@ -49,6 +49,11 @@
     mounted() {
       window.addEventListener('online', this.check);
       window.addEventListener('offline', this.check);
+    },
+
+    destroyed() {
+      window.removeEventListener('online', this.check);
+      window.removeEventListener('offline', this.check);
     }
   }
 </script>
