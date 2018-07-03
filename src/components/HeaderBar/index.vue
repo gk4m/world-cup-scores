@@ -9,11 +9,9 @@
 </template>
 
 <script>
-
   export default {
     name: 'HeaderBar',
   }
-
 </script>
 
 <style lang="sass">

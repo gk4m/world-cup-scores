@@ -94,19 +94,20 @@
     .header-bar
       margin-top: 10px
 
-    .tabs-component-tabs
-      display: flex
-      margin-bottom: 10px
+    > .tabs-component
+      > .tabs-component-tabs
+        display: flex
+        margin-bottom: 10px
 
-    .tabs-component-tab
-      display: flex
+        .tabs-component-tab
+          display: flex
 
-      &.is-active
-        border-bottom: 2px solid $c-blue
+          &.is-active
+            border-bottom: 2px solid $c-blue
 
-      a
-        padding: 6px 8px
-        font-size: 12px
-        color: $c-blue
+          a
+            padding: 6px 8px
+            font-size: 12px
+            color: $c-blue
 
 </style>

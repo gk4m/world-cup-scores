@@ -24,9 +24,9 @@
 </template>
 
 <script>
-  import MatchItem from '@/components/MatchItem'
-  import MatchEvents from '@/components/MatchEvents'
-  import MatchStatistic from '@/components/MatchStatistic'
+  import MatchItem from './MatchItem'
+  import MatchEvents from './MatchEvents'
+  import MatchStatistic from './MatchStatistic'
 
   export default {
     name: 'Match',
