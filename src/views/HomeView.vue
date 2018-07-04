@@ -6,11 +6,10 @@
           <info-bar
             title="Today matches"
             :date="new Date()"/>
-
           <div v-if="todayMatches" v-for="(match, index) in todayMatches" :key="index">
             <match :match="match"/>
           </div>
-          <p  v-if="!todayMatches">No matches found</p>
+          <p  v-if="!todayMatches.length">There are no matches today</p>
         </section>
 
         <section class="home-view__section">
@@ -21,7 +20,7 @@
           <div v-if="tomorrowMatches" v-for="(match, index) in tomorrowMatches" :key="index">
             <match :match="match"/>
           </div>
-          <p v-if="!tomorrowMatches">No matches found</p>
+          <p v-if="!tomorrowMatches.length">There are no matches today</p>
         </section>
       </div>
 
