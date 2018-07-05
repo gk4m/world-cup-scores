@@ -59,7 +59,6 @@
       label="Offsides"
       :away-val="homeTeam.offsides"
       :home-val="awayTeam.offsides"/>
-
   </div>
 </template>
 

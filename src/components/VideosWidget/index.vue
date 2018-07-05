@@ -4,9 +4,9 @@
 
     <div class="videos-widget__inner">
       <div class="videos-widget__video" v-for="(item, index) in videos.items" :key="index">
-        <a :href="'https://www.youtube.com/watch?v='+ item.contentDetails.videoId" target="_blank" rel="noopener">
-          <img class="videos-widget__video__img" v-lazy="item.snippet.thumbnails.high.url" alt=""/>
-          <div class="videos-widget__video__title">{{item.snippet.title}}</div>
+        <a class="videos-widget__link" :href="'https://www.youtube.com/watch?v='+ item.contentDetails.videoId" target="_blank" rel="noopener">
+          <img class="videos-widget__img" v-lazy="item.snippet.thumbnails.high.url" alt=""/>
+          <div class="videos-widget__v-title">{{item.snippet.title}}</div>
         </a>
       </div>
     </div>
@@ -99,30 +99,30 @@
       margin: 8px 4px
 
     &__video
-      margin: 5px
       width: 100%
+      margin: 5px
 
-      a
-        color: $c-black
+    &__link
+      color: $c-black
 
-      &__img
+    &__img
         width: 100%
 
-      &__title
-        margin: 8px 0
-        font:
-          size: 14px
-          weight: bold
-        line-height: 16px
+    &__v-title
+      margin: 8px 0
+      font:
+        size: 14px
+        weight: bold
+      line-height: 16px
 
     &__bottom
       text-align: center
 
     &__load-more
       padding: 5px 9px
-      font-weight: bold
       background: $c-blue
       color: $c-white
+      font-weight: bold
       cursor: pointer
 
       &:hover
@@ -137,7 +137,7 @@
         max-width: 220px
         margin: 5px
 
-        &__img
-          max-width: 220px
+      &__img
+        max-width: 220px
 
 </style>

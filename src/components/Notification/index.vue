@@ -1,5 +1,5 @@
 <template>
-  <div :class="['notification', type ? `notification--${type}` : '']" v-show="show">
+  <div :class="elClass" v-show="show">
     <span v-html="message"></span>
     <button class="notification__close-btn" @click="close()" type="button" aria-label="Close alert">
       <icon name="times-circle"></icon>
@@ -27,8 +27,14 @@
       }
     },
 
+    computed: {
+      elClass() {
+        return ['notification', this.type ? `notification--${this.type}` : '']
+      }
+    },
+
     methods: {
-      close: function (notification) {
+      close: function () {
         clearTimeout(this.timer);
 
         this.show = false;
@@ -58,7 +64,6 @@
     padding: 8px 35px
     color: $color
     font:
-      family: 'Montserrat', sans-serif
       size: 11px
       weight: 500
     line-height: 16px

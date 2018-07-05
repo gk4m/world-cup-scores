@@ -7,6 +7,7 @@
 
   export default {
     name: 'offline-detector',
+
     data() {
       return {
         notice: {

@@ -58,36 +58,7 @@
 </script>
 
 <style lang="sass">
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans')
-  @import '~normalize-scss/sass/normalize'
-
-  +normalize
-
-  html
-    box-sizing: border-box
-    font-family: 'Open Sans', sans-serif
-
-  // Set box-sizing globally to handle padding and border widths
-  *,
-  *::before,
-  *::after
-    box-sizing: inherit
-
-  body
-    background: $c-gray-light
-
-  button
-    background: none
-    border: 0
-    padding: 0
-
-  ul
-    margin: 0
-    padding: 0
-    list-style: none
-
-  a
-    text-decoration: none
+  @import styles/base/base
 
   .app
     &__content

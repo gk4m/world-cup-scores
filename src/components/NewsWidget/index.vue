@@ -1,15 +1,15 @@
 <template>
   <div v-if="news" class="news-widget">
-    <info-bar title="News" />
+    <info-bar title="News"/>
     <ul>
       <li v-for="item in news" class="news-widget__list-item">
         <div class="news-widget__date">
-          <div class="news-widget__date__top">{{item.date | moment("DD")}}</div>
-          <div class="news-widget__date__bottom">{{item.date | moment("MMM YY")}}</div>
+          <div class="news-widget__day">{{new Date(item.date) | moment("DD")}}</div>
+          <div>{{new Date(item.date) | moment("MMM YY")}}</div>
         </div>
-       <a :href="item.news_link" target="_blank" rel="noopener">
-         {{item.news_title}}
-       </a>
+        <a class="news-widget__link" :href="item.news_link" target="_blank" rel="noopener">
+          {{item.news_title}}
+        </a>
       </li>
     </ul>
     <a
@@ -56,6 +56,7 @@
 </script>
 
 <style lang="sass">
+
   .news-widget
     &__list-item
       display: flex
@@ -64,11 +65,11 @@
       font-size: 12px
       line-height: 16px
 
-      a
-        color: $c-blue-dark
+    &__link
+      color: $c-blue-dark
 
-        &:hover
-          text-decoration: underline
+      &:hover
+        text-decoration: underline
 
     &__date
       display: inline-block
@@ -84,11 +85,11 @@
         size: 10px
         weight: bold
 
-      &__top
-        padding: 5px
-        font-size: 16px
-        background: $c-blue-light
-        border-radius: 3px
+    &__day
+      padding: 5px
+      font-size: 16px
+      background: $c-blue-light
+      border-radius: 3px
 
     &__see-more
       display: block
@@ -96,6 +97,5 @@
       text-align: center
       font-size: 12px
       color: $c-blue
-
 
 </style>
