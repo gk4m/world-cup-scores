@@ -25,7 +25,7 @@
     "@vue/cli-plugin-eslint": "3.1.4",
     "@vue/cli-service": "3.1.2",
     "gulp": "3.9.1",
-    "node-sass": "4.9.4",
+    "node-sass": "4.14.1",
     "normalize-scss": "7.0.1",
     "sass-loader": "7.1.0",
     "vue-awesome": "3.2.0",
