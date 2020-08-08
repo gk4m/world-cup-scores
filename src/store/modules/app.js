@@ -1,14 +1,14 @@
-import api from '@/api';
-import axios from 'axios';
-import _ from 'lodash';
+import api from "@/api";
+import axios from "axios";
+import _ from "lodash";
 
-const checkLastUpdate = function (lastUpdate, expired = 20) {
+const checkLastUpdate = function(lastUpdate, expired = 20) {
   if (lastUpdate) {
     const currentDate = new Date();
     const lastUpdateDate = new Date(lastUpdate);
-    const diff = (parseInt((currentDate - lastUpdateDate) / 1000) / 60); //minutes
+    const diff = parseInt((currentDate - lastUpdateDate) / 1000) / 60; //minutes
 
-    return diff > expired
+    return diff > expired;
   } else {
     return true;
   }
@@ -29,7 +29,6 @@ const state = {
   todayMatches: null,
   tomorrowMatches: null,
   playersGoalScored: null,
-  playersSaves: null,
   news: null,
   resourcesUpdates: []
 };
@@ -40,10 +39,9 @@ const getters = {
   getTodayMatches: state => state.todayMatches,
   getTomorrowMatches: state => state.tomorrowMatches,
   getPlayersGoalScored: state => state.playersGoalScored,
-  getPlayersSaves: state => state.playersSaves,
   getResourcesUpdates: state => state.resourcesUpdates,
   getNews: state => state.news,
-  isOnline: state => state.online,
+  isOnline: state => state.online
 };
 
 const mutations = {
@@ -52,7 +50,7 @@ const mutations = {
   },
 
   SET_MATCHES(state, matches) {
-    matches = _.orderBy(matches, ['datetime'], ['asc']);
+    matches = _.orderBy(matches, ["datetime"], ["asc"]);
     state.matches = matches;
   },
 
@@ -68,14 +66,9 @@ const mutations = {
     state.playersGoalScored = data;
   },
 
-  SET_PLAYER_SAVES(state, data) {
-    state.playersSaves = data;
-  },
-
   SET_NEWS(state, data) {
     state.news = data;
   },
-
 
   SET_RESOURCE_UPDATE(state, resource) {
     state.resourcesUpdates[resource] = new Date();
@@ -87,116 +80,97 @@ const mutations = {
 };
 
 const actions = {
-  async fetchMatches({commit, getters}) {
+  async fetchMatches({ commit, getters }) {
     const lastUpdate = getters.getResourcesUpdates[resources.MATCHES];
 
     if (navigator.onLine && checkLastUpdate(lastUpdate)) {
       try {
         const response = await api.worldCup.getAllMatches();
 
-        commit('SET_MATCHES', response.data);
-        commit('SET_RESOURCE_UPDATE', resources.MATCHES);
-
+        commit("SET_MATCHES", response.data);
+        commit("SET_RESOURCE_UPDATE", resources.MATCHES);
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  async fetchTodayMatches({commit}) {
+  async fetchTodayMatches({ commit }) {
     if (navigator.onLine) {
       try {
         const response = await api.worldCup.getTodayMatches();
-        commit('SET_TODAY_MATCHES', response.data);
+        commit("SET_TODAY_MATCHES", response.data);
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  async fetchTomorrowMatches({commit, getters}) {
+  async fetchTomorrowMatches({ commit, getters }) {
     const lastUpdate = getters.getResourcesUpdates[resources.MATCHES_TOMORROW];
 
     if (navigator.onLine && checkLastUpdate(lastUpdate, 240)) {
       try {
         const response = await api.worldCup.getTomorrowMatches();
 
-        commit('SET_TOMORROW_MATCHES', response.data);
-        commit('SET_RESOURCE_UPDATE', resources.MATCHES_TOMORROW);
-
+        commit("SET_TOMORROW_MATCHES", response.data);
+        commit("SET_RESOURCE_UPDATE", resources.MATCHES_TOMORROW);
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  async fetchGroups({commit, getters}) {
+  async fetchGroups({ commit, getters }) {
     const lastUpdate = getters.getResourcesUpdates[resources.GROUPS];
 
     if (navigator.onLine && checkLastUpdate(lastUpdate)) {
       try {
         const response = await api.worldCup.getTeamsGroupResults();
 
-        commit('SET_GROUPS', response.data);
-        commit('SET_RESOURCE_UPDATE', resources.GROUPS);
-
+        commit("SET_GROUPS", response.data);
+        commit("SET_RESOURCE_UPDATE", resources.GROUPS);
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  async fetchPlayersGoalScored({commit, getters}) {
-    const lastUpdate = getters.getResourcesUpdates[resources.PLAYER_GOAL_SCORED];
+  async fetchPlayersGoalScored({ commit, getters }) {
+    const lastUpdate =
+      getters.getResourcesUpdates[resources.PLAYER_GOAL_SCORED];
 
     if (navigator.onLine && checkLastUpdate(lastUpdate, 60)) {
       try {
         const data = await api.fifacom.getPlayersGoalScored();
 
-        commit('SET_PLAYER_GOAL_SCORED', data);
-        commit('SET_RESOURCE_UPDATE', resources.PLAYER_GOAL_SCORED);
-
+        commit("SET_PLAYER_GOAL_SCORED", data);
+        commit("SET_RESOURCE_UPDATE", resources.PLAYER_GOAL_SCORED);
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  async fetchPlayersSaves({commit, getters}) {
-    const lastUpdate = getters.getResourcesUpdates[resources.PLAYER_SAVES];
-
-    if (navigator.onLine && checkLastUpdate(lastUpdate, 60)) {
-      try {
-        const data = await api.fifacom.getPlayersSaves();
-
-        commit('SET_PLAYER_SAVES', data);
-        commit('SET_RESOURCE_UPDATE', resources.PLAYER_SAVES);
-
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  },
-
-  async fetchNews({commit}) {
+  async fetchNews({ commit }) {
     if (navigator.onLine) {
       try {
-        const response = await axios.get('https://fifa-2018-apis.herokuapp.com/fifa/news');
+        const response = await axios.get(
+          "https://fifa-2018-apis.herokuapp.com/fifa/news"
+        );
 
-        commit('SET_NEWS', response.data.data.slice(0, 5));
-
+        commit("SET_NEWS", response.data.data.slice(0, 5));
       } catch (e) {
         console.log(e);
       }
     }
   },
 
-  setAppStatus({commit}, status) {
-    commit('SET_APP_STATUS', status)
+  setAppStatus({ commit }, status) {
+    commit("SET_APP_STATUS", status);
   },
 
-  init({dispatch}) {
-  }
+  init({ dispatch }) {}
 };
 
 const module = {
